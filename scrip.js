@@ -8,10 +8,9 @@ const scissorsButton = document.querySelector(".scissors");
 const outcomeDiv = document.querySelector(".outcome");
 const p = document.createElement("p");
 
-const results = document.createElement('div');
+const results = document.createElement("div");
 
-
-p.append(results)
+p.append(results);
 
 function getComputerChoice() {
   let choice = ["rock", "paper", "scissors"];
@@ -21,7 +20,7 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
   playerSelection = playerSelection.toLowerCase();
-  results.textContent = `${playerScore} ${computerScore}`;
+  
   if (playerSelection === computerSelection) {
     playerSelection =
       playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
@@ -48,7 +47,21 @@ function playRound(playerSelection, computerSelection) {
     outcomeDiv.appendChild(p);
     computerScore++;
   }
-  p.append(results)
+
+  
+  if (playerScore >= 5) {
+    const scoreResult = document.createElement("p");
+    p.append(results);
+    scoreResult.textContent = 'You Win';
+    p.append(scoreResult);
+  }
+  else if (computerScore >= 5) {
+    const scoreResult = document.createElement("p");
+    scoreResult.textContent = 'The computer Won';
+    p.append(scoreResult);
+  }
+  p.append(results);
+  results.textContent = `${playerScore} ${computerScore}`;
 }
 
 rockButton.addEventListener("click", () => {
